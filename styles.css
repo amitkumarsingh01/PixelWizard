@@ -1,3 +1,4 @@
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,32 +6,330 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f9d68c;
-    font-family: 'Arial', sans-serif;
+    background-color: #fdf6e3;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
-.container {
+/* Header */
+header {
+    background-color: #ECB176;
+    padding: 20px;
+    border-bottom: 2px solid black;
     text-align: center;
 }
 
-h1 {
-    font-size: 48px;
-    color: #333;
-    transition: transform 1s ease;
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.tilt {
-    width: fit-content;
+.header-logo img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.header-text h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.header-text h2 {
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #FF5733;
+}
+
+/* Main Content */
+main {
+    padding: 50px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+section:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
 
+section img {
+    width: 40%;
+    border-radius: 10px;
+}
 
+section .content {
+    width: 55%;
+    text-align: left;
+}
+
+section h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+section p, section ul {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+section ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #ECB176;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 2px solid black;
+}
+
+body {
+    background-color: #ECB176;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds shadow to the heading */
+}
+
+.faculty-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.faculty-member {
+    background-color: #fdf6e3;
+    flex-direction: column;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Adds elevation */
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faculty-member:hover {
+    transform: translateY(-10px); /* Offset effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced elevation on hover */
+}
+
+.member-avatar img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow around the avatar */
+}
+/* faculty */
+
+.faculty-info {
+    flex-grow: 1;
+}
+
+.faculty-info h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.faculty-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.faculty-info a:hover {
+    color: #ECB176; /* Color change on hover */
+}
+
+.faculty-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.faculty-info li {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.faculty-info span {
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .faculty-member {
+        width: calc(50% - 10px); /* 2 columns */
+    }
+}
+
+@media (min-width: 1024px) {
+    .faculty-member {
+        width: calc(33.333% - 10px); /* 3 columns */
+    }
+}
+
+@media (min-width: 1200px) {
+    .faculty-member {
+        width: calc(25% - 10px); /* 4 columns */
+    }
+}
+
+/* Animations */
+section {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    section img, section .content {
+        width: 100%;
+    }
+
+    section img {
+        margin-bottom: 20px;
+    }
+
+    .header-logo {
+        flex-direction: column;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    section h3 {
+        font-size: 1.6em;
+    }
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input[type="text"], select, input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2bff00; /* Darker orange on hover */
+}
+
+.confirmation {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e0ffe0; /* Light green background */
+    border: 1px solid #4CAF50; /* Green border */
+    border-radius: 6px;
+    text-align: center;
+    color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIET Mentorship Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-logo">
+            <img src="../assets/logo.png" alt="SLIET Logo" />
+            <div class="header-text">
+                <h1>Deptt. of Computer Science & Engineering</h1>
+                <h2>Sant Longowal Institute of Engineering & Technology, Longowal</h2>
+            </div>
+        </div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../pages/booking.html">Booking</a>
+            <a href="../pages/faculty.html">Faculty</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h3>Book a Faculty Slot</h3>
+        <form id="booking-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+    
+            <label for="registration-no">Registration No:</label>
+            <input type="text" id="registration-no" required>
+    
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" required>
+    
+            <label for="faculty">Select Faculty:</label>
+            <select id="faculty" required>
+                <option value="" disabled selected>Select a faculty member</option>
+                <option value="Dr. Birmohan Singh">Dr. Birmohan Singh</option>
+                <option value="Dr. Damanpreet Singh">Dr. Damanpreet Singh</option>
+                <option value="Dr. Major Singh Goraya">Dr. Major Singh Goraya</option>
+                <option value="Dr. Manoj Sachan">Dr. Manoj Sachan</option>
+            </select>
+    
+            <label for="time">Select Time Slot:</label>
+            <input type="datetime-local" id="time" required>
+    
+            <button type="submit">Book Slot</button>
+        </form>
+    
+        <div class="confirmation" id="confirmation">
+            <p>Your slot is booked from <span id="slot-start"></span> to <span id="slot-end"></span>.</p>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Deptt. of Computer Science, SLIET. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
