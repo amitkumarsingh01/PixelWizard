@@ -33,9 +33,60 @@
                 </div>
                 <div class="faculty-info">
                     <h4>Dr. Birmohan Singh</h4>
+                    <ul>
+                        <li><span>Educational Qualification:</span> Ph.D., M.E.</li>
+                        <li><span>Phone (O):</span> +91-1672-253208</li>
+                        <li><span>e-mail:</span> birmohansingh@sliet.ac.in, birmohans@gmail.com</li>
+                    </ul>
                     <button class="view-bookings">Slot Booked: <span class="booking-count">0</span></button>
                 </div>
             </div>
+
+            <div class="faculty-member" id="damanpreets">
+                <div class="member-avatar">
+                    <img src="http://sliet.ac.in/wp-content/uploads/avatars/4/65783e7db0473-bpfull.jpg" alt="Dr. Damanpreet Singh">
+                </div>
+                <div class="faculty-info">
+                    <h4><a href="http://cs.sliet.ac.in/people/daman/">Dr. Damanpreet Singh</a></h4>
+                    <ul>
+                        <li><span>Educational Qualification:</span> Ph.D., M.Tech, B.Tech.</li>
+                        <li><span>Phone (O):</span> +91-1672-253210</li>
+                        <li><span>e-mail:</span> damanpreets@sliet.ac.in</li>
+                    </ul>
+                    <button class="view-bookings">Slot Booked: <span class="booking-count">0</span></button>
+                </div>
+            </div>
+
+            <div class="faculty-member" id="major">
+                <div class="member-avatar">
+                    <img src="http://sliet.ac.in/wp-content/uploads/avatars/35/5e69c6be20c7e-bpfull.jpg" alt="Dr. Major Singh Goraya">
+                </div>
+                <div class="faculty-info">
+                    <h4><a href="http://cs.sliet.ac.in/people/daman/">Dr. Major Singh Goraya</a></h4>
+                    <ul>
+                        <li><span>Educational Qualification:</span> Ph.D., M.Tech, B.Tech.</li>
+                        <li><span>Phone (O):</span> 01672-253212</li>
+                        <li><span>e-mail:</span> mjrsingh@yahoo.com</li>
+                    </ul>
+                    <button class="view-bookings">Slot Booked: <span class="booking-count">0</span></button>
+                </div>
+            </div>
+
+            <div class="faculty-member" id="manoj">
+                <div class="member-avatar">
+                    <img src="http://sliet.ac.in/wp-content/uploads/avatars/6/605c66bd3e3bc-bpfull.jpg" alt="Dr. Manoj Sachan">
+                </div>
+                <div class="faculty-info">
+                    <h4><a href="http://cs.sliet.ac.in/people/daman/">Dr. Manoj Sachan</a></h4>
+                    <ul>
+                        <li><span>Educational Qualification:</span> B.Tech, M.E, Ph.D</li>
+                        <li><span>Phone (O):</span> +91-1672-253214</li>
+                        <li><span>e-mail:</span> manojsachan@sliet.ac.in, manojsachan@gmail.com</li>
+                    </ul>
+                    <button class="view-bookings">Slot Booked: <span class="booking-count">0</span></button>
+                </div>
+            </div>
+
 
             <!-- Repeat similar blocks for other faculty members -->
 
@@ -51,55 +102,74 @@
     <div id="booking-details-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <h3>Booking Details</h3>
+            <h6>Booking Details</h6>
             <div id="booking-details"></div>
         </div>
     </div>
 
     <script>
-        // Load bookings from localStorage
-        const bookings = JSON.parse(localStorage.getItem("facultyBookings")) || {};
 
-        // Display the booking count for each faculty
-        const facultyMembers = {
-            'birmohan': 'Dr. Birmohan Singh',
-            // Add other faculty ID mappings
-        };
-
-        for (let facultyId in facultyMembers) {
-            const facultyName = facultyMembers[facultyId];
-            const count = bookings[facultyName] ? bookings[facultyName].length : 0;
-            document.querySelector(`#${facultyId} .booking-count`).textContent = count;
-        }
-
-        // Handle click event on "Slot Booked" buttons to show modal
-        document.querySelectorAll('.view-bookings').forEach(button => {
-            button.addEventListener('click', function () {
-                const facultyId = this.closest('.faculty-member').id;
+            // Load bookings from localStorage
+            const bookings = JSON.parse(localStorage.getItem("facultyBookings")) || {};
+        
+            // Display the booking count for each faculty
+            const facultyMembers = {
+                'birmohan': 'Dr. Birmohan Singh',
+                'damanpreets': 'Dr. Damanpreet Singh',
+                'major': 'Dr. Major Singh Goraya',
+                'manoj': 'Dr. Manoj Sachan',
+            };
+        
+            for (let facultyId in facultyMembers) {
                 const facultyName = facultyMembers[facultyId];
-                const facultyBookings = bookings[facultyName] || [];
-
-                let detailsHTML = '';
-                facultyBookings.forEach(booking => {
-                    detailsHTML += `
-                        <p><strong>Name:</strong> ${booking.name}</p>
-                        <p><strong>Registration No:</strong> ${booking.regNo}</p>
-                        <p><strong>Interests:</strong> ${booking.interests}</p>
-                        <p><strong>Time:</strong> ${booking.time}</p>
-                        <p><strong>Booked on:</strong> ${booking.timestamp}</p>
-                        <hr>
-                    `;
+                const count = bookings[facultyName] ? bookings[facultyName].length : 0;
+                document.querySelector(`#${facultyId} .booking-count`).textContent = count;
+            }
+        
+            // Function to format booking time
+            function formatBookingTime(bookingTime) {
+                const date = new Date(bookingTime);
+                const hours = date.getHours();
+                const minutes = date.getMinutes();
+                const endTime = new Date(date.getTime() + 30 * 60000); // Assuming a 30-minute slot
+                const formattedStartTime = `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+                const formattedEndTime = `${endTime.getHours()}:${endTime.getMinutes() < 10 ? '0' + endTime.getMinutes() : endTime.getMinutes()}`;
+                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        
+                return `${formattedStartTime} To ${formattedEndTime} ${formattedDate}`;
+            }
+        
+            // Handle click event on "Slot Booked" buttons to show modal
+            document.querySelectorAll('.view-bookings').forEach(button => {
+                button.addEventListener('click', function () {
+                    const facultyId = this.closest('.faculty-member').id;
+                    const facultyName = facultyMembers[facultyId];
+                    const facultyBookings = bookings[facultyName] || [];
+        
+                    let detailsHTML = '';
+                    facultyBookings.forEach(booking => {
+                        const formattedTime = formatBookingTime(booking.time);
+                        detailsHTML += `
+                            <p><strong>Name:</strong> ${booking.name}</p>
+                            <p><strong>Registration No:</strong> ${booking.regNo}</p>
+                            <p><strong>Interests:</strong> ${booking.interests}</p>
+                            <p><strong>Time:</strong> ${formattedTime}</p>
+                            <p><strong>Booked on:</strong> ${booking.timestamp}</p>
+                            <hr>
+                        `;
+                    });
+        
+                    document.getElementById('booking-details').innerHTML = detailsHTML;
+                    document.getElementById('booking-details-modal').style.display = 'block';
                 });
-
-                document.getElementById('booking-details').innerHTML = detailsHTML;
-                document.getElementById('booking-details-modal').style.display = 'block';
             });
-        });
+        
+            // Close the modal when clicking on the close button
+            document.querySelector('.close-btn').addEventListener('click', function () {
+                document.getElementById('booking-details-modal').style.display = 'none';
+            });
 
-        // Close the modal when clicking on the close button
-        document.querySelector('.close-btn').addEventListener('click', function () {
-            document.getElementById('booking-details-modal').style.display = 'none';
-        });
+        
     </script>
 </body>
 </html>

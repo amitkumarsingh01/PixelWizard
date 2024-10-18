@@ -68,7 +68,24 @@
             const regNo = document.getElementById("registration-no").value;
             const interests = document.getElementById("interests").value;
             const faculty = document.getElementById("faculty").value;
-            const time = document.getElementById("time").value;
+            const time = document.getElementById("time").value; // ISO format (e.g., "2024-10-19T02:28")
+    
+            // Function to format time for display
+            function formatTime(bookingTime) {
+                const date = new Date(bookingTime);
+                const hours = date.getHours();
+                const minutes = date.getMinutes();
+                const formattedStartTime = `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+                const endTime = new Date(date.getTime() + 30 * 60000); // Add 30 minutes
+                const formattedEndTime = `${endTime.getHours()}:${endTime.getMinutes() < 10 ? '0' + endTime.getMinutes() : endTime.getMinutes()}`;
+                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    
+                return {
+                    start: `${formattedStartTime}`,
+                    end: `${formattedEndTime}`,
+                    date: formattedDate
+                };
+            }
     
             // Store the booking information in localStorage
             let bookings = JSON.parse(localStorage.getItem("facultyBookings")) || {};
@@ -87,8 +104,12 @@
             bookings[faculty].push(newBooking);
             localStorage.setItem("facultyBookings", JSON.stringify(bookings));
     
+            // Format the booking time for display
+            const formattedTime = formatTime(time);
+            document.getElementById("slot-start").innerText = formattedTime.start;
+            document.getElementById("slot-end").innerText = formattedTime.end + ' ' + formattedTime.date;
+    
             document.getElementById("confirmation").style.display = "block";
-            document.getElementById("slot-start").innerText = time;
         });
     </script>
 </body>
