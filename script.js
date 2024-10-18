@@ -6,3 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "max-glare": 0.5
     });
 });
+
+
+
