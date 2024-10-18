@@ -51,15 +51,45 @@
             <button type="submit">Book Slot</button>
         </form>
     
-        <div class="confirmation" id="confirmation">
+        <div class="confirmation" id="confirmation" style="display:none;">
             <p>Your slot is booked from <span id="slot-start"></span> to <span id="slot-end"></span>.</p>
         </div>
     </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Deptt. of Computer Science, SLIET. All rights reserved.</p>
     </footer>
 
-    <script src="../script.js"></script>
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const regNo = document.getElementById("registration-no").value;
+            const interests = document.getElementById("interests").value;
+            const faculty = document.getElementById("faculty").value;
+            const time = document.getElementById("time").value;
+    
+            // Store the booking information in localStorage
+            let bookings = JSON.parse(localStorage.getItem("facultyBookings")) || {};
+            if (!bookings[faculty]) {
+                bookings[faculty] = [];
+            }
+    
+            const newBooking = {
+                name: name,
+                regNo: regNo,
+                interests: interests,
+                time: time,
+                timestamp: new Date().toLocaleString()
+            };
+    
+            bookings[faculty].push(newBooking);
+            localStorage.setItem("facultyBookings", JSON.stringify(bookings));
+    
+            document.getElementById("confirmation").style.display = "block";
+            document.getElementById("slot-start").innerText = time;
+        });
+    </script>
 </body>
 </html>
